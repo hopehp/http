@@ -1,0 +1,19 @@
+{
+    "name": "hope/http",
+    "description": "Hope Http library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shvorak Alexey",
+            "email": "dr.emerido@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+    },
+    "autoload": {
+      "psr-4": {
+        "Hope\\Http" : "dist/"
+      }
+    }
+}
