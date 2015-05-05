@@ -71,13 +71,17 @@ namespace Hope\Http
         /**
          * Returns value or default
          *
-         * @param string $key
-         * @param mixed  $default
+         * @param string $key [optional]
+         * @param mixed  $default [optional]
          *
          * @return mixed|null
          */
-        public function get($key, $default = null)
+        public function get($key = null, $default = null)
         {
+            if (is_null($key)) {
+                return $this->all();
+            }
+
             if (false == isset($this->_values[$key])) {
                 return $default;
             }
