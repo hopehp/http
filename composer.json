@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-      "hope/util": "*"
+      "hope/util": "dev-master"
     },
     "require-dev": {
     },
