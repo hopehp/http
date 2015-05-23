@@ -4,14 +4,13 @@ namespace Hope\Http
 {
 
     use Hope\Core\Error;
-    use Hope\Core\Object;
 
     /**
      * Class Url
      *
      * @package Hope\Http
      */
-    class Url extends Object
+    class Url
     {
 
         /**
@@ -370,7 +369,7 @@ namespace Hope\Http
             $parts = @parse_url($url);
 
             if ($parts === false) {
-                throw new Error('Can\'t parse invalid url');
+                throw new \InvalidArgumentException('Can\'t parse invalid url');
             }
             $parts = $parts + [
                 'host' => null,

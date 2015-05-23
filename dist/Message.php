@@ -83,6 +83,17 @@ namespace Hope\Http
             return $this->_headers->get('Content-Type');
         }
 
+        /**
+         * Create instance of message
+         *
+         * @param ...$args
+         *
+         * @return static
+         */
+        public static function make(...$args)
+        {
+            return new static(...$args);
+        }
     }
 
 }

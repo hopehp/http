@@ -32,10 +32,12 @@ namespace Hope\Http
          * Create Bag
          *
          * @param array $value
+         * @param bool  $frozen [optional]
          */
-        public function __construct(array $value = [])
+        public function __construct(array $value = [], $frozen = false)
         {
             $this->_values = $value;
+            $this->_frozen = $frozen;
         }
 
         /**
@@ -59,7 +61,7 @@ namespace Hope\Http
         public function set($key, $value)
         {
             if ($this->_frozen) {
-                throw new Error(['Can\'t set value to frozen Bag']);
+                throw new \InvalidArgumentException('Can\'t set value to frozen Bag');
             }
 
             if (is_string($key)) {
@@ -120,7 +122,7 @@ namespace Hope\Http
         public function remove($key)
         {
             if ($this->_frozen) {
-                throw new Error(['Can\'t remove value from frozen Bag']);
+                throw new \InvalidArgumentException('Can\'t remove value from frozen Bag');
             }
 
             if (isset($this->_values[$key])) {

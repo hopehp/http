@@ -15,6 +15,13 @@ namespace Hope\Http
     {
 
         /**
+         * Requested url
+         *
+         * @var \Hope\Http\Url
+         */
+        protected $_url;
+
+        /**
          * HTTP GET params
          *
          * @var \Hope\Http\Bag
@@ -29,26 +36,18 @@ namespace Hope\Http
         protected $_post;
 
         /**
+         * Uploaded files
+         *
+         * @var \Hope\Http\Bag\Files
+         */
+        protected $_files;
+
+        /**
          * HTTP Request method
          *
          * @var string
          */
         protected $_method;
-
-        /**
-         * Returns GET values
-         *
-         * @see \Hope\Http\Bag::get
-         *
-         * @param string $key [optional]
-         * @param mixed  $default [optional]
-         *
-         * @return mixed|null
-         */
-        public function get($key = null, $default = null)
-        {
-            return $this->_get->get($key, $default);
-        }
 
         /**
          * Returns POST values
@@ -60,9 +59,24 @@ namespace Hope\Http
          *
          * @return mixed|null
          */
-        public function post($key = null, $default = null)
+        public function getPost($key = null, $default = null)
         {
             return $this->_post->get($key, $default);
+        }
+
+        /**
+         * Returns GET values
+         *
+         * @see \Hope\Http\Bag::get
+         *
+         * @param string $key [optional]
+         * @param mixed  $default [optional]
+         *
+         * @return mixed|null
+         */
+        public function getQuery($key = null, $default = null)
+        {
+            return $this->_get->get($key, $default);
         }
 
         /**
@@ -73,6 +87,95 @@ namespace Hope\Http
         public function getMethod()
         {
             return $this->_method;
+        }
+
+        /**
+         * Add headers for request
+         *
+         * @param \Hope\Http\Bag\Headers|array $data
+         *
+         * @return \Hope\Http\Request
+         */
+        public function withHeaders($data)
+        {
+            $this->_headers = $data instanceof Bag\Headers
+                ? $data
+                : new Bag\Headers($data);
+
+            return $this;
+        }
+
+        /**
+         * Add cookies for request
+         *
+         * @param \Hope\Http\Bag\Cookies|array $data
+         *
+         * @return \Hope\Http\Request
+         */
+        public function withCookies($data)
+        {
+            $this->_cookies = $data instanceof Bag\Cookies
+                ? $data
+                : new Bag\Cookies($data);
+
+            return $this;
+        }
+
+        /**
+         * Add files for request
+         *
+         * @param \Hope\Http\Bag\Files|array $data
+         *
+         * @return \Hope\Http\Request
+         */
+        public function withFiles($data)
+        {
+            if ($data instanceof Bag\Files) {
+                $this->_files = $data;
+            } else {
+                $this->_files = new Bag\Files($data);
+            }
+            return $this;
+        }
+
+        public function withMethod($name)
+        {
+            $this->_method = $name;
+            return $this;
+        }
+
+        /**
+         * Add Post values for request
+         *
+         * @param \Hope\Http\Bag|array $data
+         *
+         * @return \Hope\Http\Request
+         */
+        public function withPost($data)
+        {
+            if ($data instanceof Bag) {
+                $this->_post = $data;
+            } else {
+                $this->_post = new Bag($data);
+            }
+            return $this;
+        }
+
+        /**
+         * Set url to this request
+         *
+         * @param \Hope\Http\Url|string $url
+         *
+         * @return \Hope\Http\Request
+         */
+        public function withUrl($url)
+        {
+            if ($url instanceof Url) {
+                $this->_url = $url;
+            } else {
+                $this->_url = new Url($url);
+            }
+            return $this;
         }
 
     }

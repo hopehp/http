@@ -37,7 +37,7 @@ namespace Hope\Http\Bag
          *
          * @return mixed|null
          */
-        public function get($key, $default = null)
+        public function get($key = null, $default = null)
         {
             if (is_string($key)) {
                 $key = $this->normalize($key);

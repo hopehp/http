@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "49d1dc0723775b2ea66153160612a019",
+    "packages": [
+        {
+            "name": "hope/util",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:hopelibs/util.git",
+                "reference": "ea18ecd182cba22a7a5d7284e2c3038e987d24f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hopelibs/util/zipball/ea18ecd182cba22a7a5d7284e2c3038e987d24f5",
+                "reference": "ea18ecd182cba22a7a5d7284e2c3038e987d24f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.6.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Hope\\Util\\": "dist/"
+                },
+                "files": [
+                    "functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shvorak Alexey",
+                    "email": "dr.emerido@gmail.com"
+                }
+            ],
+            "description": "Hope Framework utilities",
+            "time": "2015-05-05 20:56:12"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "hope/util": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

@@ -3,6 +3,11 @@
 namespace Hope\Http
 {
 
+    /**
+     * Class Host
+     *
+     * @package Hope\Http
+     */
     class Host
     {
 
