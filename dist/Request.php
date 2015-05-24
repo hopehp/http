@@ -80,6 +80,18 @@ namespace Hope\Http
         }
 
         /**
+         * Check if given method(s) is valid for this request
+         *
+         * @param string ...$method Methods for check
+         *
+         * @return bool
+         */
+        public function isMethod(...$method)
+        {
+            return in_array($this->_method, $method);
+        }
+
+        /**
          * Returns request method
          *
          * @return string
