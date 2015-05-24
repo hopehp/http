@@ -65,6 +65,18 @@ namespace Hope\Http
         }
 
         /**
+         * Returns request files
+         *
+         * @param string $key
+         *
+         * @return \Hope\Util\File|null
+         */
+        public function getFile($key)
+        {
+            return $this->_files->get($key);
+        }
+
+        /**
          * Returns GET values
          *
          * @see \Hope\Http\Bag::get
@@ -150,6 +162,13 @@ namespace Hope\Http
             return $this;
         }
 
+        /**
+         * Set request method
+         *
+         * @param string $name Method name
+         *
+         * @return \Hope\Http\Request
+         */
         public function withMethod($name)
         {
             $this->_method = $name;

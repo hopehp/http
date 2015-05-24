@@ -26,7 +26,10 @@ namespace Hope\Http\Bag
         {
             if (is_string($key) && $this->has($key)) {
                 if (isset($this->_values[$key]['tmp_name'])) {
-                    return new File($this->_values[$key]['tmp_name']);
+                    $file = new File($this->_values[$key]['tmp_name']);
+                    $file->setName($file['name']);
+
+                    return $file;
                 }
             }
             return parent::get($key, $default);

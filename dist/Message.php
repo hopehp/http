@@ -36,6 +36,16 @@ namespace Hope\Http
         protected $_content;
 
         /**
+         * Returns message content
+         *
+         * @return string
+         */
+        public function getContent()
+        {
+            return $this->_content;
+        }
+
+        /**
          * Set message content
          *
          * @param mixed $data
@@ -48,15 +58,17 @@ namespace Hope\Http
 
             return $this;
         }
-        
+
         /**
-         * Returns message content
+         * Set message content
          *
-         * @return string
+         * @param mixed $data
+         *
+         * @return \Hope\Http\Message
          */
-        public function getContent()
+        public function withContent($data)
         {
-            return $this->_content;
+            return $this->setContent($data);
         }
 
         /**
