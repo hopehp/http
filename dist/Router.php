@@ -2,6 +2,7 @@
 
 namespace Hope\Http
 {
+    use Hope\Http\Router\Path;
 
     /**
      * Class Router
@@ -12,9 +13,18 @@ namespace Hope\Http
     {
 
         /**
+         * Routes
+         *
          * @var array
          */
         protected $_routes;
+
+        /**
+         * Router param configs
+         *
+         * @var array
+         */
+        protected $_params = [];
 
         /**
          * Register route for method
@@ -24,21 +34,32 @@ namespace Hope\Http
          *
          * @return \Hope\Http\Router
          */
-        public function route($method, $pattern)
+        public function route($method = '*', $pattern)
         {
-
+            return $this->_routes[] = new Path($method, $pattern, $this);
         }
 
         /**
-         * Register routes for resource
+         * Register param
          *
-         * @param string $pattern
+         * @param string   $name    Param name
+         * @param string   $pattern Regular expression pattern for param
+         * @param callable $handler [optional]  Param handler function
          *
          * @return \Hope\Http\Router
          */
-        public function resource($pattern)
+        public function param($name, $pattern, callable $handler = null)
         {
+            if (false === is_string($name)) {
+                throw new \InvalidArgumentException('Param name must be a string');
+            }
+            if (isset($this->_params[$name])) {
+                throw new \InvalidArgumentException("Duplication of '$name' param");
+            }
 
+            $this->_params[$name] = [$pattern, $handler];
+
+            return $this;
         }
         
         /**
