@@ -39,23 +39,27 @@ namespace Hope\Http
          */
         public function __construct(array $values)
         {
-            $this->_values = $values;
+            parent::__construct($values, false);
         }
 
         /**
          * Returns request
          *
+         * @param array $post
+         * @param array $files
+         * @param array $cookies
+         *
          * @return \Hope\Http\Request
          */
-        public function getRequest()
+        public function getRequest(array $post = null, array $files = null, array $cookies = null)
         {
             if ($this->_request === null) {
                 $this->_request = Request::make()
                     ->withHeaders($this->getHeaders())
-                    ->withCookies($_COOKIE)
+                    ->withCookies($cookies ? : $_COOKIE)
                     ->withMethod($this->get('REQUEST_METHOD', 'GET'))
-                    ->withFiles($_FILES)
-                    ->withPost($_POST)
+                    ->withFiles($files ? : $_FILES)
+                    ->withPost($post ? : $_POST)
                     ->withUrl($this->get('HTTP_HOST') . $this->get('REQUEST_URI', '/'))
                 ;
             }
