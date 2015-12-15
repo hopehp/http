@@ -96,15 +96,23 @@ namespace Hope\Http
         protected $_status;
 
         /**
+         * HTTP Response reason
+         *
+         * @var string
+         */
+        protected $_reason;
+
+        /**
          * Set HTTP status
          *
          * @param int $status
          *
          * @return \Hope\Http\Response
          */
-        public function setStatus($status)
+        public function setStatus($status, $reason = null)
         {
             $this->_status = $status;
+            $this->_reason = $reason;
 
             return $this;
         }
@@ -117,6 +125,20 @@ namespace Hope\Http
         public function getStatus()
         {
             return $this->_status;
+        }
+
+        /**
+         * Returns HTTP reason
+         *
+         * @return string|null
+         */
+        public function getReason()
+        {
+            if ($this->_reason == null && $this->_status && isset(static::$codes[$this->_status])) {
+                $this->_reason = static::$codes[$this->_status];
+            }
+
+            return $this->_reason;
         }
 
     }
